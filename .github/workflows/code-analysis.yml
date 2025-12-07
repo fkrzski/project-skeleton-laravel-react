@@ -1,0 +1,121 @@
+name: code-analysis
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      code: ${{ steps.filter.outputs.code }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check for file changes
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            code:
+              - '.github/**'
+              - 'app/**'
+              - 'tests/**'
+              - 'composer.json'
+              - 'composer.lock'
+              - 'config/**'
+              - 'pint.json'
+              - 'phpstan.neon'
+              - 'rector.php'
+
+  ci:
+    needs: changes
+    if: needs.changes.outputs.code == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.5
+          tools: composer:v2
+          extensions: dom, mbstring, zip
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Cache Node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Install NPM dependencies
+        run: npm install
+
+      - name: Copy Environment File
+        run: cp .env.example .env
+
+      - name: Generate Application Key
+        run: php artisan key:generate
+
+      - name: Rector Cache
+        uses: actions/cache@v4
+        with:
+          path: /tmp/rector
+          key: ${{ runner.os }}-rector-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-rector-
+
+      - run: mkdir -p /tmp/rector
+
+      - name: PHPStan Cache
+        uses: actions/cache@v4
+        with:
+          path: /tmp/phpstan
+          key: ${{ runner.os }}-phpstan-${{ hashFiles('composer.lock') }}
+          restore-keys: ${{ runner.os }}-phpstan-
+
+      - run: mkdir -p /tmp/phpstan
+
+      - name: Run ENV keys check
+        run: composer test:env
+
+      - name: Run profanity check
+        run: composer test:profanity
+
+      - name: Run syntax check
+        run: composer test:syntax
+
+      - name: Run lint check
+        run: composer test:lint
+
+      - name: Run refactor check
+        run: composer test:refactor
+
+      - name: Run types check
+        run: composer test:types
+
+      - name: Run type coverage check
+        run: composer test:type-coverage
