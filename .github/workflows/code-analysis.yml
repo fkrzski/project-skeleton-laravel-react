@@ -1,4 +1,4 @@
-name: code-analysis
+name: Code analysis
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  changes:
+  Changes:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: read
@@ -34,7 +34,7 @@ jobs:
               - 'phpstan.neon'
               - 'rector.php'
 
-  ci:
+  "Code analysis":
     needs: changes
     if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-latest
