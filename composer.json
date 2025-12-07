@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "nunomaduro/laravel-starter-kit-inertia-react",
+    "name": "fkrzski/project-skeleton-laravel-react",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": [
@@ -117,7 +117,7 @@
             "@test:type-coverage",
             "@test:unit",
             "@test:unit:mutation"
-        ],
+        ]
     },
     "extra": {
         "laravel": {
