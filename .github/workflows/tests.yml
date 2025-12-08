@@ -104,21 +104,6 @@ jobs:
       - name: Install Playwright System Dependencies
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: npx playwright install-deps
-      - name: Rector Cache
-        uses: actions/cache@v4
-        with:
-          path: /tmp/rector
-          key: ${{ runner.os }}-rector-${{ hashFiles('composer.lock') }}
-          restore-keys: ${{ runner.os }}-rector-
-      - run: mkdir -p /tmp/rector
-
-      - name: PHPStan Cache
-        uses: actions/cache@v4
-        with:
-          path: /tmp/phpstan
-          key: ${{ runner.os }}-phpstan-${{ hashFiles('composer.lock') }}
-          restore-keys: ${{ runner.os }}-phpstan-
-      - run: mkdir -p /tmp/phpstan
 
       - name: Create database
         run: touch database/database.sqlite
