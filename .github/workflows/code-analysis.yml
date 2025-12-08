@@ -34,7 +34,8 @@ jobs:
               - 'phpstan.neon'
               - 'rector.php'
 
-  "Code analysis":
+  code-analysis:
+    name: Code analysis
     needs: changes
     if: needs.changes.outputs.code == 'true'
     runs-on: ubuntu-latest

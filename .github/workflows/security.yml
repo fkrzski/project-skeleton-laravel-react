@@ -7,7 +7,8 @@ on:
   pull_request:
 
 jobs:
-  "Composer audit":
+  composer-audit:
+    name: Composer audit
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -25,7 +26,8 @@ jobs:
       - name: Run Composer Audit
         run: composer audit
 
-  "NPM audit":
+  npm-audit:
+    name: NPM audit
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -42,7 +44,8 @@ jobs:
       - name: Run NPM Audit
         run: npm audit
 
-  "Dependency review":
+  dependency-review:
+    name: Dependency review
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
