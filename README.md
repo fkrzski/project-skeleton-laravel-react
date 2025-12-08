@@ -1,9 +1,7 @@
-<p>
-    <a href="https://github.com/fkrzski/project-skeleton-laravel-react/actions"><img src="https://github.com/fkrzski/project-skeleton-laravel-react/actions/workflows/tests.yml/badge.svg" alt="Build Status"></a>
-    <a href="https://packagist.org/packages/fkrzski/project-skeleton-laravel-react"><img src="https://img.shields.io/packagist/dt/fkrzski/project-skeleton-laravel-react" alt="Total Downloads"></a>
-    <a href="https://packagist.org/packages/fkrzski/project-skeleton-laravel-react"><img src="https://img.shields.io/packagist/v/fkrzski/project-skeleton-laravel-react" alt="Latest Stable Version"></a>
-    <a href="https://packagist.org/packages/fkrzski/project-skeleton-laravel-react"><img src="https://img.shields.io/packagist/l/fkrzski/project-skeleton-laravel-react" alt="License"></a>
-</p>
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/fkrzski/project-skeleton-laravel-react.svg?style=for-the-badge)](https://packagist.org/packages/fkrzski/project-skeleton-laravel-react)
+[![Tests](https://img.shields.io/github/actions/workflow/status/fkrzski/project-skeleton-laravel-react/tests.yml?branch=master&label=tests&style=for-the-badge)](https://github.com/fkrzski/project-skeleton-laravel-react/actions/workflows/tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/fkrzski/project-skeleton-laravel-react.svg?style=for-the-badge)](https://packagist.org/packages/fkrzski/project-skeleton-laravel-react)
+[![License](https://img.shields.io/packagist/l/fkrzski/project-skeleton-laravel-react?style=for-the-badge)](https://packagist.org/packages/fkrzski/project-skeleton-laravel-react)
 
 **Laravel Starter Kit (Inertia & React)** is an ultra-strict, type-safe [Laravel](https://laravel.com) skeleton engineered for developers who refuse to compromise on code quality. This opinionated starter kit enforces rigorous development standards through meticulous tooling configuration and architectural decisions that prioritize type safety, immutability, and fail-fast principles.
 
