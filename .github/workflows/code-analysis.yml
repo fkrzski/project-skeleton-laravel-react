@@ -30,6 +30,8 @@ jobs:
               - 'composer.json'
               - 'composer.lock'
               - 'config/**'
+              - 'package.json'
+              - 'package-lock.json'
               - 'pint.json'
               - 'phpstan.neon'
               - 'rector.php'
