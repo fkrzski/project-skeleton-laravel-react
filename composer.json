@@ -92,7 +92,7 @@
             "@pint",
             "npm run lint"
         ],
-        "test:env": "php artisan env:keys-check",
+        "test:env": "php artisan env:keys-check --no-progress",
         "test:pint": "pint --parallel --test",
         "test:profanity": "pest --profanity --compact",
         "test:refactor": "rector --dry-run",
