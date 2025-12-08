@@ -24,7 +24,7 @@ return RectorConfig::configure()
     ])
     ->withComposerBased(laravel: true)
     ->withCache(
-        cacheDirectory: '/tmp/rector',
+        cacheDirectory: '/tmp/template/rector',
         cacheClass: FileCacheStorage::class,
     )
     ->withPaths([
