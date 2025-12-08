@@ -83,7 +83,8 @@
             "composer bump",
             "npx npm-check-updates -u"
         ],
-        "pint": "pint --dirty",
+        "pint": "pint --parallel --dirty",
+        "pint:full": "pint --parallel",
         "analyse": "phpstan",
         "refactor": "rector",
         "lint": [
@@ -92,7 +93,7 @@
             "npm run lint"
         ],
         "test:env": "php artisan env:keys-check",
-        "test:pint": "pint --test",
+        "test:pint": "pint --parallel --test",
         "test:profanity": "pest --profanity --compact",
         "test:refactor": "rector --dry-run",
         "test:syntax": "find . -path ./vendor -prune -o -type f -name \"*.php\" ! -name \"*.blade.php\" -print | xargs -P 2 -n 1 php -l",
