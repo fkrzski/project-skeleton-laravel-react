@@ -60,14 +60,14 @@ jobs:
           node-version: '24'
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
 
       - name: Cache Node modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
@@ -89,7 +89,7 @@ jobs:
         run: php artisan key:generate
 
       - name: Rector Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /tmp/template/rector
           key: ${{ runner.os }}-rector-${{ hashFiles('composer.lock') }}
@@ -98,7 +98,7 @@ jobs:
       - run: mkdir -p /tmp/template/rector
 
       - name: PHPStan Cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: /tmp/template/phpstan
           key: ${{ runner.os }}-phpstan-${{ hashFiles('composer.lock') }}
